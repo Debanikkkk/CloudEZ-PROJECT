@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest   # GitHub will use a Linux runner to execute commands
 
     env:
-      AWS_REGION: us-east-1                   # Your AWS region
+      AWS_REGION: ap-south-1                   # Your AWS region
       ECR_BACKEND_REPO: cloudez-backend       # Name of ECR backend repo
       ECR_FRONTEND_REPO: cloudez-frontend     # Name of ECR frontend repo
 
