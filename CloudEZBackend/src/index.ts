@@ -81,7 +81,7 @@ AppDataSource.initialize()
     // Start cron job
     // updateStatusCron.start();
     // Start Express server
-    server.listen(envs.PORT, () => {
+    server.listen(envs.PORT, '0.0.0.0',() => {
       console.log(`Express server has started on port ${envs.PORT}`);
       console.log(`Open http://localhost:${envs.PORT}/docs to see Swagger docs`);
     });
