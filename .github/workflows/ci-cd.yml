@@ -1,0 +1,83 @@
+name: CI/CD Pipeline
+
+# Trigger workflow on push to main or PRs
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest   # GitHub will use a Linux runner to execute commands
+
+    env:
+      AWS_REGION: us-east-1                   # Your AWS region
+      ECR_BACKEND_REPO: cloudez-backend       # Name of ECR backend repo
+      ECR_FRONTEND_REPO: cloudez-frontend     # Name of ECR frontend repo
+
+    steps:
+      # 1️⃣ Checkout your code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ Set up Node.js
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 3️⃣ Install backend dependencies
+      - name: Install backend dependencies
+        run: |
+          cd CloudEZBackend
+          npm install
+
+      # 4️⃣ Run backend tests
+      - name: Run backend tests
+        run: |
+          cd CloudEZBackend
+          npm test
+
+      # 5️⃣ Install frontend dependencies
+      - name: Install frontend dependencies
+        run: |
+          cd CloudEZFrontend
+          npm install
+
+      # 6️⃣ Run frontend tests
+      - name: Run frontend tests
+        run: |
+          cd CloudEZFrontend
+          npm test
+
+      # 7️⃣ Configure AWS credentials (GitHub Secrets required)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # 8️⃣ Login to AWS ECR
+      - name: Login to ECR
+        run: |
+          aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin <account-id>.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
+
+      # 9️⃣ Build and push backend image
+      - name: Build and push backend Docker image
+        run: |
+          cd CloudEZBackend
+          docker build -t cloudez-backend .
+          docker tag cloudez-backend <account-id>.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_BACKEND_REPO }}:latest
+          docker push <account-id>.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_BACKEND_REPO }}:latest
+
+      # 🔟 Build and push frontend image
+      - name: Build and push frontend Docker image
+        run: |
+          cd CloudEZFrontend
+          docker build -t cloudez-frontend .
+          docker tag cloudez-frontend <account-id>.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_FRONTEND_REPO }}:latest
+          docker push <account-id>.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_FRONTEND_REPO }}:latest
