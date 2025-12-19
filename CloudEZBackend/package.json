@@ -11,10 +11,7 @@
     "typeorm:migrate": "typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
     "typeorm:revert": "typeorm-ts-node-commonjs migration:revert -d src/data-source.ts",
     "typeorm:generate": "typeorm-ts-node-commonjs migration:generate -d src/data-source.ts",
-    "typeorm:create": "typeorm-ts-node-commonjs migration:create",
-    "monitor": "concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"  ",
-    "watch": "onchange 'src/**/*.ts' -- npm run monitor",
-    "monitor:debug": "concurrently \"nodemon --inspect\" \"nodemon -x tsoa spec-and-routes\""
+    "typeorm:create": "typeorm-ts-node-commonjs migration:create"
   },
   "devDependencies": {
     "@eslint/js": "^9.14.0",
