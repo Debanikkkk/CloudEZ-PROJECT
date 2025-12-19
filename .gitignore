@@ -1,5 +1,4 @@
 # Ignore backend secrets
-CloudEZBackend/src/utils/envVars.ts
 CloudEZBackend/.env
 
 # Ignore node modules
