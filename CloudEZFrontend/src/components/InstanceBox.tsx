@@ -1,4 +1,4 @@
-import {Circle, Dot, Ellipsis, MoreVerticalIcon} from "lucide-react"
+import {Dot,  MoreVerticalIcon} from "lucide-react"
 import { useState } from "react"
 const InstanceBox=()=>{
     const [dropDown, setDropDown]=useState(false)

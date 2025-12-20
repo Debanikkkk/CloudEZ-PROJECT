@@ -114,9 +114,9 @@
 //   );
 // }
 
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
-import { Server, Play, Pause, RefreshCw } from 'lucide-react';
+import {  Play, Pause, RefreshCw } from 'lucide-react';
 
 const AMI_OPTIONS = [
   { id: 'ami-0001bd5c2cc5202fa', name: 'amazon-eks-node-al2023-x86_64-nvidia-1.29-v20251002' },

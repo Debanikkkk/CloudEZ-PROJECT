@@ -8,7 +8,7 @@ import ProjectsPage from './ProjectsPage'
 import Header from './Header'
 import Pricing from './Pricing'
 import Login from './Login'
-import DivisComponent from './DivisComponent'
+
 // import InstanceManager from './InstanceManager'
 
 const FinalComp=()=>{
@@ -26,7 +26,7 @@ const FinalComp=()=>{
                         <Route element={<InstanceManager/>} path='/im'/>
                         <Route element={<InstanceManager/>} path='/im'/>
                         <Route element={<ProjectsPage/>} path='/projectsPage'/>
-                        <Route element={<DivisComponent/>} path='/diviscomponent'/>
+
                 </Routes>
             </Router>
             

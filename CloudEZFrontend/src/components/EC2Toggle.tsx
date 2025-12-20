@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { Server, Play, Pause, Wifi } from 'lucide-react';
+import { Server, Play,  Wifi } from 'lucide-react';
 
 type Props = { instanceId: string };
 
