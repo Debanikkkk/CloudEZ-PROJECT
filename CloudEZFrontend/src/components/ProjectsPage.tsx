@@ -1,5 +1,5 @@
 import React from 'react';
-import { FolderOpen, Users, Activity, ArrowRight } from 'lucide-react';
+import { FolderOpen,  ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const projects = [
