@@ -79,5 +79,5 @@ jobs:
         run: |
           cd CloudEZFrontend
           docker build -t cloudez-frontend .
-          docker tag cloudez-frontend 770404292081.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_FRONTEND_REPO }}:latest
-          docker push 770404292081.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_FRONTEND_REPO }}:latest
+          docker tag cloudez-frontend <account-id>.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/cloudez-frontend:latest
+          docker push <account-id>.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/cloudez-frontend:latest
