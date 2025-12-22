@@ -4,6 +4,7 @@ CloudEZBackend/.env
 # Ignore node modules
 CloudEZBackend/node_modules/
 CloudEZFrontend/node_modules/
+CloudEZFrontend/dist/
 
 # Ignore common temporary files
 *.log
